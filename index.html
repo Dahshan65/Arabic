@@ -7,45 +7,403 @@
 <title>مسابقة قواعد اللغة العربية | وائل دهشان</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f3f0e8;color:#26372e;font-family:Tahoma,Arial,sans-serif;line-height:1.85}
-header{background:#173d32;color:#fff;text-align:center;padding:24px 12px}
-header h1{font-size:25px;margin:0}
-header p{color:#e5d4a3;margin:5px}
-main{max-width:760px;margin:22px auto;padding:0 13px}
-.card{background:#fff;border-radius:15px;padding:22px;margin-bottom:16px;box-shadow:0 3px 14px #0000000c}
-.center{text-align:center}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.between{justify-content:space-between;align-items:center}
-.stat{background:#f7f4eb;border-radius:9px;padding:12px;flex:1;min-width:90px;text-align:center}
-button{font-family:inherit;font-size:16px;border:0;border-radius:9px;padding:12px 18px;cursor:pointer}
-.primary{background:#174b3b;color:white}
-.secondary{background:#e8e2d3;color:#26372e}
-button:disabled{opacity:.5;cursor:default}
-.options{display:grid;gap:10px;margin:20px 0}
-.option{background:#f6f5ef;border:2px solid #e3e4dc;text-align:right;color:#26372e;width:100%}
-.option.correct{background:#dff3e4;border-color:#329354}
-.option.wrong{background:#ffe4e2;border-color:#d9534f}
-.progress{height:9px;background:#e6e5dc;border-radius:9px;overflow:hidden;margin:12px 0}
-#bar{height:100%;width:0;background:#b79a50;transition:width .2s}
-#feedback{display:none;padding:12px;border-radius:8px;margin:12px 0}
-#feedback.good{display:block;background:#e2f4e7;color:#205a32}
-#feedback.bad{display:block;background:#fff0e7;color:#85462b}
-.muted{color:#72796f;font-size:14px}
-.big{font-size:38px;font-weight:bold;color:#94772e}
-.hidden{display:none!important}
-.encouragement{font-size:25px;font-weight:bold;color:#174b3b;margin:15px 0}
-.star{font-size:43px}
-footer{text-align:center;color:#76796f;font-size:13px;padding:20px 12px 105px}
-.review-item{border-right:4px solid #b79a50;padding:12px;background:#faf9f5;border-radius:8px;margin:10px 0}
-.instagram-bar{position:fixed;bottom:0;left:0;right:0;z-index:10;background:#fff;padding:12px 15px;box-shadow:0 -3px 14px #00000015;text-align:center}
-.instagram-btn{display:block;max-width:500px;margin:auto;background:#a52e70;color:white;text-decoration:none;border-radius:10px;padding:11px 15px;font-weight:bold}
-.visitor-counter{margin:18px auto 0;padding:12px;background:#f7f4eb;border:1px solid #e3dcc9;border-radius:10px;max-width:350px;color:#174b3b;font-weight:bold}
-.visitor-counter small{display:block;font-weight:normal;color:#72796f;font-size:11px}
-@media(max-width:480px){
- .card{padding:17px}
- header h1{font-size:21px}
- button{font-size:15px}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f0e8;
+  color: #26372e;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.9;
+}
+
+header {
+  background: #173d32;
+  color: white;
+  text-align: center;
+  padding: 30px 16px;
+}
+
+header h1 {
+  font-size: 34px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+header p {
+  color: #e5d4a3;
+  font-size: 21px;
+  margin: 8px 0 0;
+}
+
+main {
+  width: 100%;
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 14px #0000000c;
+}
+
+.center {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat {
+  background: #f7f4eb;
+  border-radius: 12px;
+  padding: 18px 12px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.stat b {
+  font-size: 28px;
+  color: #174b3b;
+}
+
+h2 {
+  font-size: 29px;
+}
+
+h3 {
+  font-size: 26px;
+  line-height: 1.8;
+}
+
+p {
+  font-size: 20px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 12px;
+  padding: 17px 24px;
+  min-height: 62px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.primary {
+  background: #174b3b;
+  color: white;
+}
+
+.secondary {
+  background: #e8e2d3;
+  color: #26372e;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.option {
+  background: #f6f5ef;
+  border: 2px solid #d8ddd4;
+  text-align: right;
+  color: #26372e;
+  width: 100%;
+  min-height: 72px;
+  padding: 18px 20px;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.8;
+}
+
+.option.correct {
+  background: #dff3e4;
+  border-color: #329354;
+  color: #174b3b;
+  font-weight: bold;
+}
+
+.option.wrong {
+  background: #ffe4e2;
+  border-color: #d9534f;
+  color: #8a2525;
+}
+
+.progress {
+  height: 14px;
+  background: #e6e5dc;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+#bar {
+  height: 100%;
+  width: 0;
+  background: #b79a50;
+  transition: width 0.2s;
+}
+
+#feedback {
+  display: none;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 18px 0;
+  font-size: 20px;
+}
+
+#feedback.good {
+  display: block;
+  background: #e2f4e7;
+  color: #205a32;
+}
+
+#feedback.bad {
+  display: block;
+  background: #fff0e7;
+  color: #85462b;
+}
+
+.muted {
+  color: #646d63;
+  font-size: 18px;
+}
+
+.big {
+  font-size: 44px;
+  font-weight: bold;
+  color: #94772e;
+  margin: 18px 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.encouragement {
+  font-size: 30px;
+  font-weight: bold;
+  color: #174b3b;
+  margin: 18px 0;
+}
+
+.star {
+  font-size: 54px;
+}
+
+footer {
+  text-align: center;
+  color: #626b61;
+  font-size: 18px;
+  padding: 25px 12px 150px;
+}
+
+.review-item {
+  border-right: 5px solid #b79a50;
+  padding: 16px;
+  background: #faf9f5;
+  border-radius: 10px;
+  margin: 14px 0;
+  font-size: 19px;
+}
+
+.instagram-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: white;
+  padding: 12px 15px;
+  box-shadow: 0 -3px 14px #00000015;
+  text-align: center;
+}
+
+.instagram-btn {
+  display: block;
+  max-width: 600px;
+  margin: auto;
+  background: #a52e70;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 15px 18px;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.visitor-counter {
+  background: #e8e2d3;
+  color: #173d32;
+  text-align: center;
+  padding: 20px 12px;
+  margin: 20px auto;
+  border-radius: 14px;
+  font-size: 23px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.visitor-counter .counterapi {
+  min-height: 44px;
+  margin-top: 8px;
+  font-size: 25px;
+}
+
+#question {
+  font-size: 29px;
+  line-height: 1.9;
+  margin-top: 20px;
+}
+
+#stageLabel,
+#counter {
+  font-size: 20px;
+}
+
+#scoreNow {
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 19px;
+    line-height: 1.85;
+  }
+
+  header {
+    padding: 24px 12px;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  header p {
+    font-size: 19px;
+  }
+
+  main {
+    margin: 15px auto;
+    padding: 0 10px;
+  }
+
+  .card {
+    padding: 19px 15px;
+    border-radius: 14px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 19px;
+  }
+
+  .stat {
+    min-width: 95px;
+    padding: 14px 8px;
+    font-size: 17px;
+  }
+
+  .stat b {
+    font-size: 25px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 16px 17px;
+    min-height: 62px;
+    width: 100%;
+  }
+
+  .row {
+    gap: 10px;
+  }
+
+  .between {
+    gap: 10px;
+  }
+
+  .between button {
+    width: 100%;
+  }
+
+  .option {
+    font-size: 20px;
+    min-height: 70px;
+    padding: 16px 14px;
+  }
+
+  #question {
+    font-size: 25px;
+  }
+
+  #stageLabel,
+  #counter {
+    font-size: 17px;
+  }
+
+  .big {
+    font-size: 38px;
+  }
+
+  .encouragement {
+    font-size: 26px;
+  }
+
+  .visitor-counter {
+    font-size: 20px;
+    padding: 16px 10px;
+  }
+
+  .instagram-btn {
+    font-size: 19px;
+    padding: 14px 10px;
+  }
+
+  footer {
+    font-size: 17px;
+    padding-bottom: 140px;
+  }
 }
 </style>
 </head>
@@ -53,110 +411,124 @@ footer{text-align:center;color:#76796f;font-size:13px;padding:20px 12px 105px}
 <body>
 
 <header>
-<h1>مسابقة قواعد اللغة العربية</h1>
-<p>من الأساسيات إلى الإتقان | إعداد وائل دهشان</p>
+  <h1>مسابقة قواعد اللغة العربية</h1>
+  <p>من الأساسيات إلى الإتقان | إعداد وائل دهشان</p>
 </header>
 
 <main>
 
 <section id="welcome" class="card center">
-<h2>أهلًا بك في تحدّي النحو العربي</h2>
-<p>100 سؤال في خمس مراحل، من السهل إلى المتقدم.</p>
+  <h2>أهلًا بك في تحدّي النحو العربي</h2>
+  <p>100 سؤال في خمس مراحل، من السهل إلى المتقدم.</p>
 
-<div class="row">
-<div class="stat"><b>5</b><br>مراحل</div>
-<div class="stat"><b>20</b><br>سؤالًا لكل مرحلة</div>
-<div class="stat"><b>100</b><br>الدرجة الكلية</div>
-</div>
+  <div class="row">
+    <div class="stat"><b>5</b><br>مراحل</div>
+    <div class="stat"><b>20</b><br>سؤالًا لكل مرحلة</div>
+    <div class="stat"><b>100</b><br>الدرجة الكلية</div>
+  </div>
 
-<p class="muted">أجب عن الأسئلة، وتعرّف إلى نتيجتك بعد كل مرحلة. يمكنك الاستمرار أو الخروج متى شئت.</p>
-<button class="primary" onclick="startQuiz()">ابدأ المسابقة</button>
+  <p class="muted">
+    أجب عن الأسئلة، وتعرّف إلى نتيجتك بعد كل مرحلة.
+    يمكنك الاستمرار أو الخروج متى شئت.
+  </p>
+
+  <button class="primary" onclick="startQuiz()">ابدأ المسابقة</button>
 </section>
 
 <section id="quiz" class="card hidden">
-<div class="row between">
-<strong id="stageLabel">المرحلة الأولى</strong>
-<span id="counter">السؤال 1 من 20</span>
-</div>
+  <div class="row between">
+    <strong id="stageLabel">المرحلة الأولى</strong>
+    <span id="counter">السؤال 1 من 20</span>
+  </div>
 
-<div class="progress"><div id="bar"></div></div>
-<p id="difficulty" class="muted">المستوى: مبتدئ</p>
-<h3 id="question"></h3>
-<div id="options" class="options"></div>
-<div id="feedback"></div>
+  <div class="progress"><div id="bar"></div></div>
+  <p id="difficulty" class="muted">المستوى: مبتدئ</p>
+  <h3 id="question"></h3>
+  <div id="options" class="options"></div>
+  <div id="feedback"></div>
 
-<div class="row between">
-<span id="scoreNow" class="muted">صحيح: 0 من 20</span>
-<button id="nextBtn" class="primary" onclick="nextQuestion()" disabled>السؤال التالي ←</button>
-</div>
+  <div class="row between">
+    <span id="scoreNow" class="muted">صحيح: 0 من 20</span>
+    <button id="nextBtn" class="primary" onclick="nextQuestion()" disabled>
+      السؤال التالي ←
+    </button>
+  </div>
 </section>
 
 <section id="stageResult" class="card center hidden">
-<div class="star">🌟</div>
-<div class="encouragement">أحسنت، أنت رائع!</div>
-<h2 id="stageTitle">نتيجة المرحلة الأولى</h2>
-<p id="stageDescription"></p>
-<div id="stageScore" class="big">0 / 20</div>
-<p id="stageMessage"></p>
+  <div class="star">🌟</div>
+  <div class="encouragement">أحسنت، أنت رائع!</div>
+  <h2 id="stageTitle">نتيجة المرحلة الأولى</h2>
+  <p id="stageDescription"></p>
+  <div id="stageScore" class="big">0 / 20</div>
+  <p id="stageMessage"></p>
 
-<div class="row">
-<div class="stat"><b id="stageRight">0</b><br>إجابة صحيحة</div>
-<div class="stat"><b id="stageWrong">0</b><br>إجابة خاطئة</div>
-<div class="stat"><b id="stagePercent">0%</b><br>نسبة النجاح</div>
-</div>
+  <div class="row">
+    <div class="stat"><b id="stageRight">0</b><br>إجابة صحيحة</div>
+    <div class="stat"><b id="stageWrong">0</b><br>إجابة خاطئة</div>
+    <div class="stat"><b id="stagePercent">0%</b><br>نسبة النجاح</div>
+  </div>
 
-<p>نتيجتك الإجمالية حتى الآن: <strong id="totalSoFar">0 / 20</strong></p>
+  <p>نتيجتك الإجمالية حتى الآن: <strong id="totalSoFar">0 / 20</strong></p>
 
-<div class="row" style="justify-content:center;margin-top:20px">
-<button id="continueBtn" class="primary" onclick="continueStage()">استمرار إلى المرحلة التالية</button>
-<button class="secondary" onclick="finishQuiz(true)">إنهاء المسابقة والخروج</button>
-</div>
+  <div class="row" style="justify-content:center;margin-top:20px">
+    <button id="continueBtn" class="primary" onclick="continueStage()">
+      استمرار إلى المرحلة التالية
+    </button>
+    <button class="secondary" onclick="finishQuiz(true)">
+      إنهاء المسابقة والخروج
+    </button>
+  </div>
 </section>
 
 <section id="result" class="card center hidden">
-<div class="star">🏆</div>
-<div class="encouragement">أحسنت، أنت رائع!</div>
-<h2 id="finalTitle">نتيجتك النهائية</h2>
-<div class="big" id="finalScore">0 / 100</div>
-<p id="message"></p>
+  <div class="star">🏆</div>
+  <div class="encouragement">أحسنت، أنت رائع!</div>
+  <h2 id="finalTitle">نتيجتك النهائية</h2>
+  <div class="big" id="finalScore">0 / 100</div>
+  <p id="message"></p>
 
-<div class="row">
-<div class="stat"><b id="rightCount">0</b><br>إجابات صحيحة</div>
-<div class="stat"><b id="wrongCount">0</b><br>إجابات خاطئة</div>
-<div class="stat"><b id="percent">0%</b><br>النسبة</div>
-</div>
+  <div class="row">
+    <div class="stat"><b id="rightCount">0</b><br>إجابات صحيحة</div>
+    <div class="stat"><b id="wrongCount">0</b><br>إجابات خاطئة</div>
+    <div class="stat"><b id="percent">0%</b><br>النسبة</div>
+  </div>
 
-<h3>التقييم</h3>
-<p id="advice"></p>
+  <h3>التقييم</h3>
+  <p id="advice"></p>
 
-<div class="row" style="justify-content:center">
-<button class="primary" onclick="restartQuiz()">إعادة المسابقة</button>
-<button class="secondary" onclick="showReview()">مراجعة الإجابات</button>
-</div>
+  <div class="row" style="justify-content:center">
+    <button class="primary" onclick="restartQuiz()">إعادة المسابقة</button>
+    <button class="secondary" onclick="showReview()">مراجعة الإجابات</button>
+  </div>
 
-<div id="review" class="hidden" style="text-align:right;margin-top:20px"></div>
+  <div id="review" class="hidden" style="text-align:right;margin-top:20px"></div>
 </section>
 
 <footer>
-مسابقة تعليمية في قواعد اللغة العربية<br>
-إعداد وائل دهشان
-
-<div id="visitor-counter" class="visitor-counter">
-👥 عدد زيارات التطبيق:
-<strong id="visitor-count">جارٍ تحميل العداد...</strong>
-<small id="visitor-status">يتم الاتصال بخدمة عداد الزيارات</small>
-</div>
+  مسابقة تعليمية في قواعد اللغة العربية<br>
+  إعداد وائل دهشان
 </footer>
+
+<!-- عداد الزيارات -->
+<div class="visitor-counter">
+  👥 عدد زيارات التطبيق
+  <div class="counterapi" style="min-height:44px"></div>
+</div>
 
 </main>
 
 <div class="instagram-bar">
-<a class="instagram-btn"
-href="https://www.instagram.com/wael_dahshan?utm_source=qr&amp;rpxt=cmZ6M2F5Y3c0ajJ0"
-target="_blank" rel="noopener noreferrer">
-◎ تابع وائل دهشان على إنستغرام
-</a>
+  <a class="instagram-btn"
+     href="https://www.instagram.com/wael_dahshan65/"
+     target="_blank"
+     rel="noopener noreferrer">
+    ◎ تابع وائل دهشان على إنستغرام
+  </a>
 </div>
+
+<!-- خدمة عداد الزيارات الجديدة -->
+<script src="https://counterapi.com/c.js?ns=dahshan65-arabic-grammar" async></script>
 
 <script>
 const Q = [
@@ -293,225 +665,251 @@ const Q = [
 ["أي علامة تدل على جر الممنوع من الصرف؟",["الكسرة دائمًا","الفتحة إذا لم يضف ولم يعرف بأل","الضمة","السكون"],1,"الممنوع من الصرف يجر بالفتحة إذا لم يضف ولم يعرف بأل."]
 ];
 
-let pos=0,score=0,answered=false,results=[];
-const stages=["الأولى","الثانية","الثالثة","الرابعة","الخامسة"];
-const $=id=>document.getElementById(id);
-const hide=id=>$(id).classList.add("hidden");
-const show=id=>$(id).classList.remove("hidden");
+let pos = 0;
+let score = 0;
+let answered = false;
+let results = [];
 
-function startQuiz(){
- pos=0;score=0;answered=false;results=[];
- hide("welcome");hide("stageResult");hide("result");show("quiz");
- renderQuestion();
- window.scrollTo(0,0);
+const stages = ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"];
+const $ = id => document.getElementById(id);
+const hide = id => $(id).classList.add("hidden");
+const show = id => $(id).classList.remove("hidden");
+
+function startQuiz() {
+  pos = 0;
+  score = 0;
+  answered = false;
+  results = [];
+  hide("welcome");
+  hide("stageResult");
+  hide("result");
+  show("quiz");
+  renderQuestion();
+  window.scrollTo(0, 0);
 }
 
-function renderQuestion(){
- answered=false;
- const stage=Math.floor(pos/20),local=pos%20,q=Q[pos];
- $("stageLabel").textContent="المرحلة "+stages[stage];
- $("counter").textContent="السؤال "+(local+1)+" من 20";
- $("bar").style.width=(local/20*100)+"%";
- $("difficulty").textContent=["المستوى: مبتدئ","المستوى: أساسي","المستوى: متوسط","المستوى: متقدم","المستوى: متقدم جدًا"][stage];
- $("question").textContent=q[0];
- $("options").innerHTML="";
- $("feedback").className="";
- $("feedback").style.display="none";
- $("nextBtn").disabled=true;
- $("nextBtn").textContent=local===19?(stage===4?"عرض النتيجة النهائية":"عرض نتيجة المرحلة"):"السؤال التالي ←";
+function renderQuestion() {
+  answered = false;
 
- q[1].forEach((text,i)=>{
-  const b=document.createElement("button");
-  b.className="option";
-  b.textContent=["أ","ب","ج","د"][i]+". "+text;
-  b.onclick=()=>chooseAnswer(i);
-  $("options").appendChild(b);
- });
+  const stage = Math.floor(pos / 20);
+  const local = pos % 20;
+  const q = Q[pos];
 
- const stageCorrect=results.filter(r=>Math.floor(r.pos/20)===stage&&r.correct).length;
- $("scoreNow").textContent="صحيح في هذه المرحلة: "+stageCorrect+" من 20";
-}
+  $("stageLabel").textContent = "المرحلة " + stages[stage];
+  $("counter").textContent = "السؤال " + (local + 1) + " من 20";
+  $("bar").style.width = (local / 20 * 100) + "%";
 
-function chooseAnswer(choice){
- if(answered)return;
- answered=true;
+  $("difficulty").textContent = [
+    "المستوى: مبتدئ",
+    "المستوى: أساسي",
+    "المستوى: متوسط",
+    "المستوى: متقدم",
+    "المستوى: متقدم جدًا"
+  ][stage];
 
- const q=Q[pos],correct=choice===q[2];
- if(correct)score++;
- results.push({pos,choice,correct});
+  $("question").textContent = q[0];
+  $("options").innerHTML = "";
+  $("feedback").className = "";
+  $("feedback").style.display = "none";
+  $("nextBtn").disabled = true;
 
- document.querySelectorAll(".option").forEach((b,i)=>{
-  b.disabled=true;
-  if(i===q[2])b.classList.add("correct");
-  if(i===choice&&!correct)b.classList.add("wrong");
- });
+  $("nextBtn").textContent =
+    local === 19
+      ? (stage === 4 ? "عرض النتيجة النهائية" : "عرض نتيجة المرحلة")
+      : "السؤال التالي ←";
 
- const f=$("feedback");
- f.className=correct?"good":"bad";
- f.style.display="block";
- f.textContent=(correct?"إجابة صحيحة! ":"إجابة غير صحيحة. الإجابة الصحيحة: "+q[1][q[2]]+". ")+q[3];
-
- const stageCorrect=results.filter(r=>Math.floor(r.pos/20)===Math.floor(pos/20)&&r.correct).length;
- $("scoreNow").textContent="صحيح في هذه المرحلة: "+stageCorrect+" من 20";
- $("nextBtn").disabled=false;
- $("bar").style.width=((pos%20+1)/20*100)+"%";
-}
-
-function nextQuestion(){
- if(!answered)return;
-
- if(pos%20===19){
-  if(pos===99){
-   finishQuiz(false);
-   return;
-  }
-  showStageResult();
-  return;
- }
-
- pos++;
- renderQuestion();
-}
-
-function showStageResult(){
- const stage=Math.floor(pos/20);
- const current=results.filter(r=>Math.floor(r.pos/20)===stage);
- const right=current.filter(r=>r.correct).length;
- const wrong=current.length-right;
-
- $("stageTitle").textContent="نتيجة المرحلة "+stages[stage];
- $("stageDescription").textContent="أنهيت الأسئلة "+(stage*20+1)+" إلى "+((stage+1)*20)+".";
- $("stageScore").textContent=right+" / 20";
- $("stageRight").textContent=right;
- $("stageWrong").textContent=wrong;
- $("stagePercent").textContent=Math.round(right/20*100)+"%";
- $("totalSoFar").textContent=score+" / "+results.length;
- $("stageMessage").textContent=right>=18?"ممتاز! أداء رائع.":right>=14?"أحسنت، واصل التقدم.":"واصل التعلم، فالمرحلة التالية فرصة جديدة.";
-
- $("continueBtn").textContent="استمرار إلى المرحلة "+stages[stage+1];
- hide("quiz");
- show("stageResult");
- window.scrollTo(0,0);
-}
-
-function continueStage(){
- pos++;
- hide("stageResult");
- show("quiz");
- renderQuestion();
- window.scrollTo(0,0);
-}
-
-function finishQuiz(early=false){
- hide("quiz");
- hide("stageResult");
- show("result");
-
- const attempted=results.length;
- const wrong=attempted-score;
- const pct=attempted?Math.round(score/attempted*100):0;
-
- $("finalTitle").textContent=early?"نتيجتك حتى الآن":"النتيجة النهائية للمسابقة";
- $("finalScore").textContent=score+" / "+attempted;
- $("rightCount").textContent=score;
- $("wrongCount").textContent=wrong;
- $("percent").textContent=pct+"%";
- $("message").textContent=early?"أنهيت المسابقة بإرادتك بعد الإجابة عن "+attempted+" سؤالًا.":"أكملت المراحل الخمس والمسابقـة كاملة!";
- $("advice").textContent=pct>=90?"ممتاز جدًا! لديك مستوى قوي في قواعد اللغة العربية.":pct>=75?"جيد جدًا! راجع الأخطاء لتحسين مستواك.":pct>=60?"جيد، وتحتاج إلى مراجعة بعض الأبواب النحوية.":"راجع الأساسيات وتدرج في دراسة القواعد ثم أعد المسابقة.";
-
- $("review").innerHTML="";
- hide("review");
- window.scrollTo(0,0);
-}
-
-function showReview(){
- const box=$("review");
- box.innerHTML="<h3>مراجعة الإجابات</h3>";
-
- results.forEach(r=>{
-  const q=Q[r.pos],d=document.createElement("div");
-  d.className="review-item";
-
-  const title=document.createElement("b");
-  title.textContent=(r.pos+1)+". "+q[0];
-  d.appendChild(title);
-
-  const a=document.createElement("p");
-  a.textContent="إجابتك: "+q[1][r.choice];
-  d.appendChild(a);
-
-  const c=document.createElement("p");
-  c.textContent="الإجابة الصحيحة: "+q[1][q[2]];
-  d.appendChild(c);
-
-  const e=document.createElement("p");
-  e.className="muted";
-  e.textContent=q[3];
-  d.appendChild(e);
-
-  box.appendChild(d);
- });
-
- show("review");
- box.scrollIntoView({behavior:"smooth"});
-}
-
-function restartQuiz(){
- hide("result");
- hide("stageResult");
- hide("quiz");
- show("welcome");
- window.scrollTo(0,0);
-}
-
-/* ==========================
-   عداد زيارات التطبيق
-   ========================== */
-
-async function loadVisitorCounter(){
- const countElement=$("visitor-count");
- const statusElement=$("visitor-status");
-
- countElement.textContent="جارٍ التحميل...";
- statusElement.textContent="يتم الاتصال بخدمة عداد الزيارات";
-
- const counterUrl=
- "https://api.counterapi.dev/v1/wael-dahshan-arabic-grammar-2026/page-visits/up";
-
- try{
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),10000);
-
-  const response=await fetch(counterUrl,{
-   method:"GET",
-   cache:"no-store",
-   signal:controller.signal
+  q[1].forEach((text, i) => {
+    const b = document.createElement("button");
+    b.className = "option";
+    b.textContent = ["أ", "ب", "ج", "د"][i] + ". " + text;
+    b.onclick = () => chooseAnswer(i);
+    $("options").appendChild(b);
   });
 
-  clearTimeout(timeout);
+  const stageCorrect = results.filter(
+    r => Math.floor(r.pos / 20) === stage && r.correct
+  ).length;
 
-  if(!response.ok){
-   throw new Error("Counter service unavailable");
-  }
-
-  const data=await response.json();
-
-  if(typeof data.count==="number"&&Number.isFinite(data.count)){
-   countElement.textContent=data.count.toLocaleString("ar");
-   statusElement.textContent="إجمالي الزيارات المسجلة";
-   return;
-  }
-
-  throw new Error("Invalid counter response");
-
- }catch(error){
-  countElement.textContent="غير متاح مؤقتًا";
-  statusElement.textContent="تعذّر الاتصال بالعداد. حاول تحديث الصفحة لاحقًا.";
-  console.error("Visitor counter error:",error);
- }
+  $("scoreNow").textContent =
+    "صحيح في هذه المرحلة: " + stageCorrect + " من 20";
 }
 
-document.addEventListener("DOMContentLoaded",loadVisitorCounter);
+function chooseAnswer(choice) {
+  if (answered) return;
+
+  answered = true;
+
+  const q = Q[pos];
+  const correct = choice === q[2];
+
+  if (correct) score++;
+
+  results.push({pos, choice, correct});
+
+  document.querySelectorAll(".option").forEach((b, i) => {
+    b.disabled = true;
+
+    if (i === q[2]) b.classList.add("correct");
+    if (i === choice && !correct) b.classList.add("wrong");
+  });
+
+  const f = $("feedback");
+  f.className = correct ? "good" : "bad";
+  f.style.display = "block";
+
+  f.textContent = (
+    correct
+      ? "إجابة صحيحة! "
+      : "إجابة غير صحيحة. الإجابة الصحيحة: " + q[1][q[2]] + ". "
+  ) + q[3];
+
+  const stageCorrect = results.filter(
+    r => Math.floor(r.pos / 20) === Math.floor(pos / 20) && r.correct
+  ).length;
+
+  $("scoreNow").textContent =
+    "صحيح في هذه المرحلة: " + stageCorrect + " من 20";
+
+  $("nextBtn").disabled = false;
+  $("bar").style.width = ((pos % 20 + 1) / 20 * 100) + "%";
+}
+
+function nextQuestion() {
+  if (!answered) return;
+
+  if (pos % 20 === 19) {
+    if (pos === 99) {
+      finishQuiz(false);
+      return;
+    }
+
+    showStageResult();
+    return;
+  }
+
+  pos++;
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function showStageResult() {
+  const stage = Math.floor(pos / 20);
+  const current = results.filter(
+    r => Math.floor(r.pos / 20) === stage
+  );
+
+  const right = current.filter(r => r.correct).length;
+  const wrong = current.length - right;
+
+  $("stageTitle").textContent = "نتيجة المرحلة " + stages[stage];
+  $("stageDescription").textContent =
+    "أنهيت الأسئلة " + (stage * 20 + 1) +
+    " إلى " + ((stage + 1) * 20) + ".";
+
+  $("stageScore").textContent = right + " / 20";
+  $("stageRight").textContent = right;
+  $("stageWrong").textContent = wrong;
+  $("stagePercent").textContent = Math.round(right / 20 * 100) + "%";
+  $("totalSoFar").textContent = score + " / " + results.length;
+
+  $("stageMessage").textContent =
+    right >= 18
+      ? "ممتاز! أداء رائع."
+      : right >= 14
+        ? "أحسنت، واصل التقدم."
+        : "واصل التعلم، فالمرحلة التالية فرصة جديدة.";
+
+  $("continueBtn").textContent =
+    "استمرار إلى المرحلة " + stages[stage + 1];
+
+  hide("quiz");
+  show("stageResult");
+  window.scrollTo(0, 0);
+}
+
+function continueStage() {
+  pos++;
+  hide("stageResult");
+  show("quiz");
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function finishQuiz(early = false) {
+  hide("quiz");
+  hide("stageResult");
+  show("result");
+
+  const attempted = results.length;
+  const wrong = attempted - score;
+  const pct = attempted ? Math.round(score / attempted * 100) : 0;
+
+  $("finalTitle").textContent =
+    early ? "نتيجتك حتى الآن" : "النتيجة النهائية للمسابقة";
+
+  $("finalScore").textContent = score + " / " + attempted;
+  $("rightCount").textContent = score;
+  $("wrongCount").textContent = wrong;
+  $("percent").textContent = pct + "%";
+
+  $("message").textContent = early
+    ? "أنهيت المسابقة بإرادتك بعد الإجابة عن " + attempted + " سؤالًا."
+    : "أكملت المراحل الخمس والمسابقـة كاملة!";
+
+  $("advice").textContent =
+    pct >= 90
+      ? "ممتاز جدًا! لديك مستوى قوي في قواعد اللغة العربية."
+      : pct >= 75
+        ? "جيد جدًا! راجع الأخطاء لتحسين مستواك."
+        : pct >= 60
+          ? "جيد، وتحتاج إلى مراجعة بعض الأبواب النحوية."
+          : "راجع الأساسيات وتدرج في دراسة القواعد ثم أعد المسابقة.";
+
+  $("review").innerHTML = "";
+  hide("review");
+  window.scrollTo(0, 0);
+}
+
+function showReview() {
+  const box = $("review");
+  box.innerHTML = "<h3>مراجعة الإجابات</h3>";
+
+  results.forEach(r => {
+    const q = Q[r.pos];
+    const d = document.createElement("div");
+    d.className = "review-item";
+
+    const title = document.createElement("b");
+    title.textContent = (r.pos + 1) + ". " + q[0];
+    d.appendChild(title);
+
+    const a = document.createElement("p");
+    a.textContent = "إجابتك: " + q[1][r.choice];
+    d.appendChild(a);
+
+    const c = document.createElement("p");
+    c.textContent = "الإجابة الصحيحة: " + q[1][q[2]];
+    d.appendChild(c);
+
+    const e = document.createElement("p");
+    e.className = "muted";
+    e.textContent = q[3];
+    d.appendChild(e);
+
+    box.appendChild(d);
+  });
+
+  show("review");
+  box.scrollIntoView({behavior: "smooth"});
+}
+
+function restartQuiz() {
+  hide("result");
+  hide("stageResult");
+  hide("quiz");
+  show("welcome");
+  window.scrollTo(0, 0);
+}
 </script>
 
 </body>
