@@ -1,490 +1,916 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مسابقة قواعد اللغة العربية</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173d32">
+<title>مسابقة قواعد اللغة العربية | وائل دهشان</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      padding: 16px;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #f3f6f1;
-      color: #173b2b;
-      font-size: 21px;
-      line-height: 1.8;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  background: #f3f0e8;
+  color: #26372e;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.9;
+}
 
-    .container {
-      max-width: 850px;
-      margin: auto;
-      background: white;
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
-    }
+header {
+  background: #173d32;
+  color: white;
+  text-align: center;
+  padding: 30px 16px;
+}
 
-    h1 {
-      font-size: 32px;
-      color: #17633e;
-      margin-top: 5px;
-    }
+header h1 {
+  font-size: 34px;
+  margin: 0;
+  line-height: 1.5;
+}
 
-    h2 {
-      font-size: 27px;
-      color: #17633e;
-    }
+header p {
+  color: #e5d4a3;
+  font-size: 21px;
+  margin: 8px 0 0;
+}
 
-    p {
-      font-size: 21px;
-    }
+main {
+  width: 100%;
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 0 16px;
+}
 
-    button {
-      width: 100%;
-      min-height: 60px;
-      margin: 8px 0;
-      padding: 14px 18px;
-      font-size: 21px;
-      font-weight: bold;
-      font-family: inherit;
-      border: none;
-      border-radius: 13px;
-      cursor: pointer;
-      background: #17633e;
-      color: white;
-    }
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 14px #0000000c;
+}
 
-    button:hover {
-      background: #104b2e;
-    }
+.center {
+  text-align: center;
+}
 
-    button:focus-visible {
-      outline: 3px solid #d6a83c;
-      outline-offset: 3px;
-    }
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
-    .answer {
-      background: #edf5ef;
-      color: #173b2b;
-      border: 2px solid #c6ddcc;
-      text-align: right;
-    }
+.between {
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .answer:hover {
-      background: #d9ecdf;
-    }
+.stat {
+  background: #f7f4eb;
+  border-radius: 12px;
+  padding: 18px 12px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  font-size: 19px;
+}
 
-    .secondary {
-      background: #8b6a21;
-    }
+.stat b {
+  font-size: 28px;
+  color: #174b3b;
+}
 
-    .secondary:hover {
-      background: #705319;
-    }
+h2 {
+  font-size: 29px;
+}
 
-    .hidden {
-      display: none;
-    }
+h3 {
+  font-size: 26px;
+  line-height: 1.8;
+}
 
-    .question-box {
-      margin: 18px 0;
-      padding: 18px;
-      border: 2px solid #d8e5d9;
-      border-radius: 15px;
-      background: #fbfdfb;
-    }
+p {
+  font-size: 20px;
+}
 
-    #questionText {
-      font-size: 25px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+button {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 12px;
+  padding: 17px 24px;
+  min-height: 62px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.15s, opacity 0.15s;
+}
 
-    #feedback {
-      font-size: 23px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
+button:active {
+  transform: scale(0.98);
+}
 
-    .correct {
-      color: #16803d;
-    }
+.primary {
+  background: #174b3b;
+  color: white;
+}
 
-    .wrong {
-      color: #bd2525;
-    }
+.secondary {
+  background: #e8e2d3;
+  color: #26372e;
+}
 
-    .info {
-      background: #f1f5ee;
-      border-radius: 12px;
-      padding: 12px;
-      margin: 12px 0;
-      font-weight: bold;
-    }
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
-    .visitor-counter {
-      margin-top: 28px;
-      padding: 18px 10px;
-      background: #e6efe7;
-      border-radius: 14px;
-      font-size: 21px;
-      font-weight: bold;
-      overflow-wrap: anywhere;
-    }
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 24px 0;
+}
 
-    #visitCount {
-      display: inline-block;
-      min-width: 40px;
-      color: #17633e;
-      font-size: 26px;
-      direction: ltr;
-    }
+.option {
+  background: #f6f5ef;
+  border: 2px solid #d8ddd4;
+  text-align: right;
+  color: #26372e;
+  width: 100%;
+  min-height: 72px;
+  padding: 18px 20px;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.8;
+}
 
-    .footer {
-      margin-top: 20px;
-      color: #647268;
-      font-size: 16px;
-    }
+.option.correct {
+  background: #dff3e4;
+  border-color: #329354;
+  color: #174b3b;
+  font-weight: bold;
+}
 
-    @media (max-width: 480px) {
-      body {
-        padding: 8px;
-        font-size: 19px;
-      }
+.option.wrong {
+  background: #ffe4e2;
+  border-color: #d9534f;
+  color: #8a2525;
+}
 
-      .container {
-        padding: 14px;
-        border-radius: 14px;
-      }
+.progress {
+  height: 14px;
+  background: #e6e5dc;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 16px 0;
+}
 
-      h1 {
-        font-size: 27px;
-      }
+#bar {
+  height: 100%;
+  width: 0;
+  background: #b79a50;
+  transition: width 0.2s;
+}
 
-      h2 {
-        font-size: 24px;
-      }
+#feedback {
+  display: none;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 18px 0;
+  font-size: 20px;
+}
 
-      button {
-        font-size: 20px;
-        min-height: 58px;
-      }
+#feedback.good {
+  display: block;
+  background: #e2f4e7;
+  color: #205a32;
+}
 
-      #questionText {
-        font-size: 23px;
-      }
-    }
-  </style>
+#feedback.bad {
+  display: block;
+  background: #fff0e7;
+  color: #85462b;
+}
+
+.muted {
+  color: #646d63;
+  font-size: 18px;
+}
+
+.big {
+  font-size: 44px;
+  font-weight: bold;
+  color: #94772e;
+  margin: 18px 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.encouragement {
+  font-size: 30px;
+  font-weight: bold;
+  color: #174b3b;
+  margin: 18px 0;
+}
+
+.star {
+  font-size: 54px;
+}
+
+footer {
+  text-align: center;
+  color: #626b61;
+  font-size: 18px;
+  padding: 25px 12px 150px;
+}
+
+.review-item {
+  border-right: 5px solid #b79a50;
+  padding: 16px;
+  background: #faf9f5;
+  border-radius: 10px;
+  margin: 14px 0;
+  font-size: 19px;
+}
+
+.instagram-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: white;
+  padding: 12px 15px;
+  box-shadow: 0 -3px 14px #00000015;
+  text-align: center;
+}
+
+.instagram-btn {
+  display: block;
+  max-width: 600px;
+  margin: auto;
+  background: #a52e70;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 15px 18px;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.visitor-counter {
+  background: #e8e2d3;
+  color: #173d32;
+  text-align: center;
+  padding: 20px 12px;
+  margin: 20px auto;
+  border-radius: 14px;
+  font-size: 23px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.visitor-counter .counterapi {
+  min-height: 44px;
+  margin-top: 8px;
+  font-size: 25px;
+}
+
+#question {
+  font-size: 29px;
+  line-height: 1.9;
+  margin-top: 20px;
+}
+
+#stageLabel,
+#counter {
+  font-size: 20px;
+}
+
+#scoreNow {
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 19px;
+    line-height: 1.85;
+  }
+
+  header {
+    padding: 24px 12px;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  header p {
+    font-size: 19px;
+  }
+
+  main {
+    margin: 15px auto;
+    padding: 0 10px;
+  }
+
+  .card {
+    padding: 19px 15px;
+    border-radius: 14px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 19px;
+  }
+
+  .stat {
+    min-width: 95px;
+    padding: 14px 8px;
+    font-size: 17px;
+  }
+
+  .stat b {
+    font-size: 25px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 16px 17px;
+    min-height: 62px;
+    width: 100%;
+  }
+
+  .row {
+    gap: 10px;
+  }
+
+  .between {
+    gap: 10px;
+  }
+
+  .between button {
+    width: 100%;
+  }
+
+  .option {
+    font-size: 20px;
+    min-height: 70px;
+    padding: 16px 14px;
+  }
+
+  #question {
+    font-size: 25px;
+  }
+
+  #stageLabel,
+  #counter {
+    font-size: 17px;
+  }
+
+  .big {
+    font-size: 38px;
+  }
+
+  .encouragement {
+    font-size: 26px;
+  }
+
+  .visitor-counter {
+    font-size: 20px;
+    padding: 16px 10px;
+  }
+
+  .instagram-btn {
+    font-size: 19px;
+    padding: 14px 10px;
+  }
+
+  footer {
+    font-size: 17px;
+    padding-bottom: 140px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
-    <h1>🌿 مسابقة قواعد اللغة العربية 🌿</h1>
 
-    <p>
-      اختبر معلوماتك في قواعد اللغة العربية، وانتقل بين الأسئلة
-      وتعرّف إلى مستواك.
-    </p>
+<header>
+  <h1>مسابقة قواعد اللغة العربية</h1>
+  <p>من الأساسيات إلى الإتقان | إعداد وائل دهشان</p>
+</header>
 
-    <section id="mainMenu">
-      <h2>القائمة الرئيسية</h2>
-      <button onclick="startQuiz()">▶ ابدأ المسابقة</button>
-      <button class="secondary" onclick="showRules()">📘 نظام المسابقة</button>
-    </section>
+<main>
 
-    <section id="rules" class="hidden">
-      <h2>نظام المسابقة</h2>
-      <p>• تتكون المسابقة من أسئلة في قواعد اللغة العربية.</p>
-      <p>• اختر إجابة واحدة من الخيارات المعروضة.</p>
-      <p>• تظهر لك نتيجة إجابتك بعد الاختيار.</p>
-      <p>• حاول الإجابة عن جميع الأسئلة.</p>
-      <button onclick="backToMenu()">العودة إلى القائمة الرئيسية</button>
-    </section>
+<section id="welcome" class="card center">
+  <h2>أهلًا بك في تحدّي النحو العربي</h2>
+  <p>100 سؤال في خمس مراحل، من السهل إلى المتقدم.</p>
 
-    <section id="quiz" class="hidden">
-      <div class="info">
-        السؤال <span id="questionNumber">1</span>
-        من <span id="totalQuestions">10</span>
-      </div>
+  <div class="row">
+    <div class="stat"><b>5</b><br>مراحل</div>
+    <div class="stat"><b>20</b><br>سؤالًا لكل مرحلة</div>
+    <div class="stat"><b>100</b><br>الدرجة الكلية</div>
+  </div>
 
-      <div class="info">
-        الإجابات الصحيحة: <span id="score">0</span>
-      </div>
+  <p class="muted">
+    أجب عن الأسئلة، وتعرّف إلى نتيجتك بعد كل مرحلة.
+    يمكنك الاستمرار أو الخروج متى شئت.
+  </p>
 
-      <div class="question-box">
-        <div id="questionText"></div>
-        <div id="answers"></div>
-        <div id="feedback" aria-live="polite"></div>
-      </div>
+  <button class="primary" onclick="startQuiz()">ابدأ المسابقة</button>
+</section>
 
-      <button id="nextButton" class="hidden" onclick="nextQuestion()">
-        السؤال التالي
-      </button>
+<section id="quiz" class="card hidden">
+  <div class="row between">
+    <strong id="stageLabel">المرحلة الأولى</strong>
+    <span id="counter">السؤال 1 من 20</span>
+  </div>
 
-      <button class="secondary" onclick="backToMenu()">
-        إنهاء المسابقة والعودة
-      </button>
-    </section>
+  <div class="progress"><div id="bar"></div></div>
+  <p id="difficulty" class="muted">المستوى: مبتدئ</p>
+  <h3 id="question"></h3>
+  <div id="options" class="options"></div>
+  <div id="feedback"></div>
 
-    <section id="result" class="hidden">
-      <h2>🏆 انتهت المسابقة</h2>
-      <p id="finalScore"></p>
-      <p id="finalMessage"></p>
-      <button onclick="startQuiz()">إعادة المسابقة</button>
-      <button class="secondary" onclick="backToMenu()">
-        القائمة الرئيسية
-      </button>
-    </section>
+  <div class="row between">
+    <span id="scoreNow" class="muted">صحيح: 0 من 20</span>
+    <button id="nextBtn" class="primary" onclick="nextQuestion()" disabled>
+      السؤال التالي ←
+    </button>
+  </div>
+</section>
 
-    <div class="visitor-counter">
-      👥 عدد زيارات التطبيق:
-      <span id="visitCount">جارٍ تحميل العدد...</span>
-      <p id="counterMessage" style="font-size:15px;font-weight:normal;">
-        يتم تحميل العداد عبر الإنترنت.
-      </p>
-    </div>
+<section id="stageResult" class="card center hidden">
+  <div class="star">🌟</div>
+  <div class="encouragement">أحسنت، أنت رائع!</div>
+  <h2 id="stageTitle">نتيجة المرحلة الأولى</h2>
+  <p id="stageDescription"></p>
+  <div id="stageScore" class="big">0 / 20</div>
+  <p id="stageMessage"></p>
 
-    <div class="footer">
-      إعداد وبرمجة: وائل دهشان
-      <br>
-      رِواق الفن العربي
-    </div>
-  </main>
+  <div class="row">
+    <div class="stat"><b id="stageRight">0</b><br>إجابة صحيحة</div>
+    <div class="stat"><b id="stageWrong">0</b><br>إجابة خاطئة</div>
+    <div class="stat"><b id="stagePercent">0%</b><br>نسبة النجاح</div>
+  </div>
 
-  <script>
-    // أسئلة تجريبية في قواعد اللغة العربية.
-    // يمكنك إضافة أسئلة أخرى إلى هذه القائمة.
-    const questions = [
-      {
-        q: "ما نوع كلمة «يكتبُ»؟",
-        a: ["اسم", "فعل مضارع", "فعل ماضٍ"],
-        correct: 1
-      },
-      {
-        q: "ما علامة رفع المبتدأ في جملة «الطالبُ مجتهدٌ»؟",
-        a: ["الفتحة", "الكسرة", "الضمة"],
-        correct: 2
-      },
-      {
-        q: "ما الفاعل في جملة «قرأَ الطالبُ الدرسَ»؟",
-        a: ["قرأ", "الطالب", "الدرس"],
-        correct: 1
-      },
-      {
-        q: "أي الكلمات الآتية حرف؟",
-        a: ["من", "مدرسة", "يجلس"],
-        correct: 0
-      },
-      {
-        q: "ما إعراب كلمة «الدرسَ» في «شرح المعلمُ الدرسَ»؟",
-        a: ["فاعل مرفوع", "مبتدأ مرفوع", "مفعول به منصوب"],
-        correct: 2
-      },
-      {
-        q: "أي الأفعال الآتية فعل ماضٍ؟",
-        a: ["يذهب", "اذهب", "ذهب"],
-        correct: 2
-      },
-      {
-        q: "ما خبر المبتدأ في جملة «السماءُ صافيةٌ»؟",
-        a: ["السماء", "صافية", "السماء صافية"],
-        correct: 1
-      },
-      {
-        q: "ماذا تفعل «كان» بالمبتدأ والخبر؟",
-        a: [
-          "ترفعهما معًا",
-          "ترفع المبتدأ وتنصب الخبر",
-          "تنصب المبتدأ وترفع الخبر"
-        ],
-        correct: 1
-      },
-      {
-        q: "ما علامة نصب المفعول به المفرد غالبًا؟",
-        a: ["الضمة", "الكسرة", "الفتحة"],
-        correct: 2
-      },
-      {
-        q: "أي الجمل الآتية جملة اسمية؟",
-        a: ["كتبَ الطالبُ", "العلمُ نورٌ", "اجلسْ"],
-        correct: 1
-      }
-    ];
+  <p>نتيجتك الإجمالية حتى الآن: <strong id="totalSoFar">0 / 20</strong></p>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+  <div class="row" style="justify-content:center;margin-top:20px">
+    <button id="continueBtn" class="primary" onclick="continueStage()">
+      استمرار إلى المرحلة التالية
+    </button>
+    <button class="secondary" onclick="finishQuiz(true)">
+      إنهاء المسابقة والخروج
+    </button>
+  </div>
+</section>
 
-    function hideAll() {
-      document.getElementById("mainMenu").classList.add("hidden");
-      document.getElementById("rules").classList.add("hidden");
-      document.getElementById("quiz").classList.add("hidden");
-      document.getElementById("result").classList.add("hidden");
+<section id="result" class="card center hidden">
+  <div class="star">🏆</div>
+  <div class="encouragement">أحسنت، أنت رائع!</div>
+  <h2 id="finalTitle">نتيجتك النهائية</h2>
+  <div class="big" id="finalScore">0 / 100</div>
+  <p id="message"></p>
+
+  <div class="row">
+    <div class="stat"><b id="rightCount">0</b><br>إجابات صحيحة</div>
+    <div class="stat"><b id="wrongCount">0</b><br>إجابات خاطئة</div>
+    <div class="stat"><b id="percent">0%</b><br>النسبة</div>
+  </div>
+
+  <h3>التقييم</h3>
+  <p id="advice"></p>
+
+  <div class="row" style="justify-content:center">
+    <button class="primary" onclick="restartQuiz()">إعادة المسابقة</button>
+    <button class="secondary" onclick="showReview()">مراجعة الإجابات</button>
+  </div>
+
+  <div id="review" class="hidden" style="text-align:right;margin-top:20px"></div>
+</section>
+
+<footer>
+  مسابقة تعليمية في قواعد اللغة العربية<br>
+  إعداد وائل دهشان
+</footer>
+
+<!-- عداد الزيارات -->
+<div class="visitor-counter">
+  👥 عدد زيارات التطبيق
+  <div class="counterapi" style="min-height:44px"></div>
+</div>
+
+</main>
+
+<div class="instagram-bar">
+  <a class="instagram-btn"
+     href="https://www.instagram.com/wael_dahshan65/"
+     target="_blank"
+     rel="noopener noreferrer">
+    ◎ تابع وائل دهشان على إنستغرام
+  </a>
+</div>
+
+<!-- خدمة عداد الزيارات الجديدة -->
+<script src="https://counterapi.com/c.js?ns=dahshan65-arabic-grammar" async></script>
+
+<script>
+const Q = [
+["ما أقسام الكلمة؟",["اسم وفعل وحرف","اسم وفعل وجملة","مبتدأ وخبر وفعل","فاعل ومفعول"],0,"أقسام الكلمة ثلاثة: اسم وفعل وحرف."],
+["أي الكلمات اسم؟",["يكتب","من","مدرسة","إلى"],2,"مدرسة اسم يدل على مكان."],
+["أي الكلمات فعل؟",["كتاب","جلس","في","هذا"],1,"جلس فعل ماضٍ."],
+["أي الكلمات حرف؟",["قلم","ذهب","على","طالب"],2,"على حرف جر."],
+["أيها فعل ماضٍ؟",["يقرأ","اقرأ","قرأ","قارئ"],2,"قرأ فعل ماضٍ."],
+["أيها فعل مضارع؟",["كتب","اكتب","يكتب","كاتب"],2,"يكتب فعل مضارع."],
+["أيها فعل أمر؟",["درس","يدرس","دارس","ادرس"],3,"ادرس فعل أمر."],
+["أي علامة من علامات الاسم؟",["دخول أل","دخول السين","دخول سوف","تاء الفاعل"],0,"دخول أل من علامات الاسم."],
+["أي الكلمات منونة؟",["في","الكتاب","قلمٌ","سوف"],2,"قلمٌ اسم منون."],
+["ما نوع جملة الشمس مشرقة؟",["فعلية","اسمية","شرطية","ندائية"],1,"بدأت باسم، فهي جملة اسمية."],
+
+["ما ركنا الجملة الاسمية؟",["الفعل والفاعل","المبتدأ والخبر","الفعل والمفعول","الحرف والاسم"],1,"ركناها المبتدأ والخبر."],
+["ما الركن الأساسي في الجملة الفعلية بعد الفعل؟",["المبتدأ","الخبر","الفاعل","التمييز"],2,"الفاعل يدل على من قام بالفعل."],
+["ما المبتدأ في الطالب مجتهد؟",["الطالب","مجتهد","الـ","لا يوجد"],0,"الطالب مبتدأ مرفوع."],
+["ما الخبر في الحديقة جميلة؟",["الحديقة","جميلة","الحديقة جميلة","لا يوجد"],1,"جميلة خبر المبتدأ."],
+["ما علامة رفع المفرد؟",["الفتحة","الكسرة","الضمة","السكون"],2,"يرفع الاسم المفرد بالضمة."],
+["ما نوع الخبر في الطالب يكتب؟",["مفرد","جملة فعلية","جملة اسمية","شبه جملة"],1,"جملة يكتب في محل رفع خبر."],
+["ما الخبر في الكتاب على الطاولة؟",["الكتاب","على","على الطاولة","الطاولة"],2,"شبه الجملة على الطاولة خبر."],
+["في البيت رجلٌ: ما المبتدأ؟",["في","البيت","رجلٌ","في البيت"],2,"رجل مبتدأ مؤخر."],
+["ما نوع الجو معتدل؟",["اسمية","فعلية","شرطية","استفهامية"],0,"هي جملة اسمية."],
+["ما علامة رفع المثنى؟",["الضمة","الألف","الواو","الياء"],1,"يرفع المثنى بالألف."],
+
+["ما الفاعل في كتب الطالب الدرس؟",["كتب","الطالب","الدرس","الجملة"],1,"الطالب فاعل مرفوع."],
+["ما علامة رفع الفاعل المفرد؟",["الفتحة","الكسرة","الضمة","السكون"],2,"يرفع الفاعل المفرد بالضمة."],
+["ما الفاعل في حضر المعلمان؟",["حضر","المعلمان","حرف النون","لا فاعل"],1,"المعلمان فاعل مرفوع بالألف."],
+["ما الفاعل في نجحوا؟",["واو الجماعة","النجاح","لا فاعل","الهاء"],0,"واو الجماعة ضمير في محل رفع فاعل."],
+["ما الفاعل في أكتب الدرس؟",["الدرس","أكتب","ضمير مستتر تقديره أنا","لا فاعل"],2,"الفاعل ضمير مستتر تقديره أنا."],
+["ما نائب الفاعل في كُتِبَ الدرسُ؟",["كتب","الدرس","فاعل مستتر","لا يوجد"],1,"الدرس نائب فاعل مرفوع."],
+["كيف يبنى الماضي للمجهول في الثلاثي؟",["ضم أوله وكسر ما قبل آخره","فتح أوله وآخره","كسر أوله","تسكين أوله"],0,"مثل كَتَبَ ← كُتِبَ."],
+["أي جملة فيها نائب فاعل؟",["كتب الطالب","فتح الحارس الباب","فُتِحَ البابُ","يفتح الحارس الباب"],2,"الباب نائب فاعل."],
+["ما إعراب التاء في كتبتُ؟",["تاء تأنيث","ضمير في محل رفع فاعل","حرف جر","علامة نصب"],1,"التاء المتحركة ضمير فاعل."],
+["ما علامة رفع جمع المذكر السالم؟",["الواو","الألف","الياء","الكسرة"],0,"يرفع بالواو."],
+
+["ما علامة نصب المفعول به المفرد؟",["الضمة","الكسرة","الفتحة","السكون"],2,"ينصب بالفتحة الأصلية."],
+["ما المفعول به في قرأ خالد الكتاب؟",["قرأ","خالد","الكتاب","خالد والكتاب"],2,"الكتاب مفعول به."],
+["ما المفعول به في أكرمت الضيف؟",["التاء","أكرمت","الضيف","أنا"],2,"الضيف وقع عليه الإكرام."],
+["ما المفعول المطلق في انطلق العداء انطلاقًا؟",["العداء","انطلق","انطلاقًا","لا يوجد"],2,"انطلاقًا مصدر من لفظ الفعل."],
+["ما المفعول لأجله في درست رغبةً في النجاح؟",["درست","رغبةً","النجاح","في"],1,"رغبةً تبين سبب الدراسة."],
+["ما الظرف في سافرت ليلًا؟",["سافرت","التاء","ليلًا","لا يوجد"],2,"ليلًا ظرف زمان."],
+["ما الحال في عاد الجندي منتصرًا؟",["عاد","الجندي","منتصرًا","الجندي منتصر"],2,"منتصرًا حال منصوب."],
+["ما التمييز في اشتريت عشرين كتابًا؟",["اشتريت","عشرين","كتابًا","عشر"],2,"كتابًا يوضح المقصود من العدد."],
+["في أعطى المعلم الطالب جائزة: ما المفعولان؟",["المعلم فقط","الطالب وجائزة","أعطى والطالب","المعلم والطالب"],1,"أعطى يتعدى إلى مفعولين."],
+["ما المفعول فيه؟",["اسم يبين زمان الفعل أو مكانه","اسم يبين الفاعل","حرف نصب","خبر كان"],0,"هو ظرف الزمان أو المكان."],
+
+["ما عمل كان؟",["تنصب الاسمين","ترفع الاسم وتنصب الخبر","تنصب الاسم وترفع الخبر","تجر الاسمين"],1,"كان ترفع اسمها وتنصب خبرها."],
+["ما اسم كان في كان الجو جميلًا؟",["كان","الجو","جميلًا","الجملة"],1,"الجو اسم كان مرفوع."],
+["ما خبر كان في كان الجو جميلًا؟",["كان","الجو","جميلًا","لا يوجد"],2,"جميلًا خبر كان منصوب."],
+["ما عمل إن؟",["ترفع اسمها وتنصب خبرها","تنصب اسمها وترفع خبرها","تجزم فعلين","ترفع الفعل"],1,"إن تنصب الاسم وترفع الخبر."],
+["ما اسم إن في إن العلم نور؟",["إن","العلم","نور","الجملة"],1,"العلم اسم إن منصوب."],
+["ما خبر إن في إن الصدق فضيلة؟",["إن","الصدق","فضيلة","الصدق فضيلة"],2,"فضيلة خبر إن مرفوع."],
+["أيها من أخوات كان؟",["لعل","ليت","أصبح","لكن"],2,"أصبح من أخوات كان."],
+["أيها من أخوات إن؟",["صار","ليس","أمسى","لعل"],3,"لعل من أخوات إن."],
+["ما نوع ليس؟",["حرف جر","فعل ماضٍ ناقص جامد","فعل أمر","اسم موصول"],1,"ليس فعل ماضٍ ناقص جامد."],
+["ما خبر أصبح في أصبح الطالب نشيطًا؟",["أصبح","الطالب","نشيطًا","لا يوجد"],2,"نشيطًا خبر أصبح منصوب."],
+
+["ما علامة نصب جمع المذكر السالم؟",["الواو","الألف","الياء","الضمة"],2,"ينصب بالياء."],
+["ما علامة جر المثنى؟",["الألف","الضمة","الفتحة","الياء"],3,"يجر المثنى بالياء."],
+["ما علامة رفع الأسماء الخمسة؟",["الواو","الألف","الياء","الكسرة"],0,"ترفع بالواو بشروطها."],
+["ما علامة نصب الأسماء الخمسة؟",["الواو","الألف","الياء","الضمة"],1,"تنصب بالألف."],
+["ما علامة جر الأسماء الخمسة؟",["الواو","الألف","الياء","الفتحة"],2,"تجر بالياء."],
+["أيها جمع مذكر سالم؟",["معلمون","معلمات","كتب","رجال"],0,"معلمون جمع مذكر سالم."],
+["أيها جمع مؤنث سالم؟",["مسلمون","مسلمات","مسلمان","نساء"],1,"مسلمات جمع مؤنث سالم."],
+["ما علامة نصب جمع المؤنث السالم؟",["الفتحة","الكسرة","الياء","الألف"],1,"ينصب بالكسرة نيابة عن الفتحة."],
+["ما إعراب أبوك في جاء أبوك؟",["مبتدأ","فاعل مرفوع بالواو","مفعول به","اسم مجرور"],1,"أبوك فاعل من الأسماء الخمسة."],
+["ما علامة جزم المضارع الصحيح الآخر؟",["الضمة","الفتحة","السكون","حذف النون"],2,"يجزم بالسكون."],
+
+["أي الأدوات تنصب المضارع؟",["لم","لن","لمّا","لا الناهية"],1,"لن تنصب المضارع."],
+["أي الأدوات تجزم المضارع؟",["أن","كي","لن","لم"],3,"لم حرف جزم."],
+["ما إعراب يسعى في لن يسعى الكسول؟",["مرفوع","منصوب بفتحة مقدرة","مجزوم بالسكون","مجرور"],1,"ينصب بفتحة مقدرة على الألف."],
+["ما علامة نصب الأفعال الخمسة؟",["ثبوت النون","حذف النون","حذف حرف العلة","الضمة"],1,"تنصب بحذف النون."],
+["ما علامة جزم الأفعال الخمسة؟",["ثبوت النون","حذف النون","الضمة","الكسرة"],1,"تجزم بحذف النون."],
+["ما إعراب تكتبون في أنتم تكتبون؟",["مرفوع بثبوت النون","منصوب بحذف النون","مجزوم بالسكون","مرفوع بالضمة"],0,"تكتبون من الأفعال الخمسة."],
+["ما إعراب تكتبوا في لن تكتبوا؟",["مرفوع","منصوب بحذف النون","مجزوم بالسكون","مجرور"],1,"منصوب بلن وعلامة نصبه حذف النون."],
+["أي الأفعال معتل الآخر؟",["يكتب","يجلس","يسعى","يفهم"],2,"يسعى معتل الآخر بالألف."],
+["ما علامة جزم يدعو في لم يدعُ؟",["الضمة","حذف حرف العلة","الفتحة","حذف النون"],1,"يجزم بحذف حرف العلة."],
+["أي جملة فيها مضارع مجزوم؟",["لن أهمل","لم أهملْ","أهمل واجبي","سوف أهمل"],1,"أهمل مجزوم بلم."],
+
+["ما النعت؟",["تابع يصف متبوعه","فعل ماضٍ","حرف نصب","اسم لا يتبع غيره"],0,"النعت يبين صفة المنعوت."],
+["ما النعت في قرأت كتابًا مفيدًا؟",["قرأت","كتابًا","مفيدًا","لا يوجد"],2,"مفيدًا نعت منصوب."],
+["ما المعطوف في حضر خالد ومحمد؟",["حضر","خالد","الواو","محمد"],3,"محمد معطوف على خالد."],
+["ما حرف العطف في الجملة السابقة؟",["حضر","خالد","الواو","محمد"],2,"الواو حرف عطف."],
+["ما البدل في زارني أخوك خالد؟",["زارني","أخوك","خالد","الياء"],2,"خالد بدل من أخوك."],
+["ما التوكيد في جاء المدير نفسه؟",["جاء","المدير","نفسه","لا يوجد"],2,"نفسه توكيد معنوي."],
+["ما الاسم المجرور في ذهبت إلى المدرسة؟",["ذهبت","إلى","المدرسة","أنا"],2,"المدرسة اسم مجرور بإلى."],
+["ما علامة جر الاسم المفرد؟",["الضمة","الفتحة","الكسرة","السكون"],2,"الكسرة علامة الجر الأصلية."],
+["أي الجمل صحيحة؟",["إن الطالبُ مجتهدٌ","إن الطالبَ مجتهدٌ","إن الطالبَ مجتهدًا","إن الطالبِ مجتهدٌ"],1,"اسم إن منصوب وخبرها مرفوع."],
+["أي الجمل صحيحة؟",["كان الطالب مجتهدٌ","كان الطالبَ مجتهدًا","كان الطالبُ مجتهدًا","كان الطالبِ مجتهدًا"],2,"اسم كان مرفوع وخبرها منصوب."],
+
+["ما نوع المنادى في يا محمدُ؟",["نكرة غير مقصودة","علم مفرد","مضاف","شبيه بالمضاف"],1,"العلم المفرد يبنى على الضم في محل نصب."],
+["ما المنادى في يا طالب العلم؟",["يا","طالب","العلم","يا طالب"],1,"طالب منادى مضاف منصوب."],
+["ما أداة الاستثناء في حضر الطلاب إلا خالدًا؟",["حضر","الطلاب","إلا","خالدًا"],2,"إلا أداة استثناء."],
+["ما المستثنى في نجح الطلاب إلا طالبًا؟",["نجح","الطلاب","إلا","طالبًا"],3,"طالبًا مستثنى منصوب."],
+["أيها أداة شرط جازمة؟",["إذا","لو","إنْ","لولا"],2,"إنْ تجزم فعل الشرط وجوابه."],
+["في إن تجتهد تنجح، ما فعل الشرط؟",["إن","تجتهد","تنجح","لا يوجد"],1,"تجتهد فعل الشرط."],
+["في إن تجتهد تنجح، ما جواب الشرط؟",["إن","تجتهد","تنجح","الجملة كلها"],2,"تنجح جواب الشرط."],
+["أي الجمل فيها اسم تفضيل؟",["العلم نافع","العلم أنفع من المال","العلم في المدرسة","طلب العلم"],1,"أنفع اسم تفضيل."],
+["ما اسم الفاعل من كتب؟",["مكتوب","كاتب","كتاب","كتابة"],1,"اسم الفاعل كاتب."],
+["ما اسم المفعول من فتح؟",["فاتح","مفتاح","مفتوح","فتح"],2,"اسم المفعول مفتوح."],
+
+["ما مصدر استغفر؟",["غافر","مغفور","استغفار","غفر"],2,"مصدر استغفر: استغفار."],
+["ما نوع لا في لا تهملْ واجبك؟",["نافية للجنس","ناهية","عاطفة","زائدة"],1,"لا الناهية تجزم المضارع."],
+["ما اسم لا في لا رجلَ في البيت؟",["لا","رجل","البيت","في"],1,"رجل اسم لا النافية للجنس."],
+["ما خبر لا في لا طالبَ علمٍ مهملٌ؟",["لا","طالب","علم","مهمل"],3,"مهمل خبر لا مرفوع."],
+["ما نوع الذي في جاء الذي نجح؟",["اسم إشارة","اسم موصول","اسم استفهام","ضمير"],1,"الذي اسم موصول."],
+["ما إعراب الذي في جاء الذي نجح؟",["مفعول به","فاعل","اسم مجرور","خبر"],1,"في محل رفع فاعل."],
+["أيها اسم إشارة؟",["الذي","مَن","هذه","متى"],2,"هذه اسم إشارة للمفردة المؤنثة."],
+["ما نوع من في من يجتهد ينجح؟",["اسم شرط جازم","حرف جر","فعل ماضٍ","اسم إشارة"],0,"من اسم شرط جازم."],
+["ما إعراب أفضل في العلم أفضل من المال؟",["خبر مرفوع واسم تفضيل","مفعول به","اسم مجرور","فعل أمر"],0,"أفضل خبر مرفوع."],
+["أي جملة فيها مفعول مطلق مبين للنوع؟",["سرت سيرًا","سرت سيرًا سريعًا","سرت صباحًا","سرت في الطريق"],1,"سيرًا سريعًا مفعول مطلق مبين للنوع."],
+
+["ما نوع ما في ما أجمل السماء؟",["نافية","استفهامية","تعجبية","موصولة"],2,"ما التعجبية تأتي في صيغة ما أفعلَه."],
+["ما إعراب السماء في ما أجمل السماء؟",["فاعل","مفعول به منصوب","مبتدأ","اسم مجرور"],1,"السماء مفعول به منصوب."],
+["ما نوع أكرم بمحمد؟",["أمر حقيقي","صيغة تعجب","استفهام","نداء"],1,"أكرم بمحمد صيغة تعجب."],
+["أي الجمل فيها بدل بعض من كل؟",["جاء المدير نفسه","أكلت الرغيف نصفه","حضر خالد ومحمد","رأيت رجلًا كريمًا"],1,"نصفه بدل بعض من كل."],
+["ما نوع التمييز في ازداد الطالب علمًا؟",["تمييز نسبة","حال","مفعول مطلق","نعت"],0,"علمًا تمييز نسبة."],
+["ما إعراب كلتا في حضرت كلتا الطالبتين؟",["فاعل بالضمة الظاهرة","فاعل بضمة مقدرة على الألف","مفعول به","اسم مجرور"],1,"كلتا فاعل مرفوع بضمة مقدرة."],
+["أيها فيها مضاف إليه؟",["كتاب مفيد","كتاب الطالب","الكتاب مفيد","كتب الطالب"],1,"الطالب مضاف إليه مجرور."],
+["ما إعراب مساجد في صليت في مساجدَ كثيرة؟",["مجرور بالكسرة","مجرور بالفتحة لأنه ممنوع من الصرف","منصوب","مرفوع"],1,"مساجد ممنوع من الصرف ويجر بالفتحة هنا."],
+["أي الكلمات ممنوعة من الصرف؟",["كتاب","مدارس","قلم","معلم"],1,"مدارس صيغة منتهى الجموع."],
+["ما إعراب العلم في إنما العلم نور؟",["اسم إن منصوب","مبتدأ مرفوع","مفعول به","اسم مجرور"],1,"إنما تكف إن عن العمل."],
+
+["ما نوع أي في أي كتاب قرأت؟",["اسم استفهام","فعل","حرف جر","ضمير"],0,"أي اسم استفهام بحسب السياق."],
+["ما نوع حتى في درست حتى النجاح؟",["حرف جر","فعل","ضمير","اسم موصول"],0,"حتى حرف جر والنجاح اسم مجرور."],
+["ما نوع ليس من حيث التصرف؟",["متصرف","جامد","مضارع","أمر"],1,"ليس فعل ناقص جامد."],
+["أي جملة فيها مفعولان أصلهما المبتدأ والخبر؟",["أعطيت الفقير مالًا","ظننت الجو معتدلًا","قرأ الطالب الكتاب","جلس الطالب"],1,"ظننت تنصب مفعولين أصلهما المبتدأ والخبر."],
+["ما إعراب معتدلًا في ظننت الجو معتدلًا؟",["فاعل","مفعول أول","مفعول ثانٍ","حال"],2,"معتدلًا مفعول به ثانٍ."],
+["أيها من أفعال القلوب؟",["أكل","ظن","ذهب","جلس"],1,"ظن من أفعال القلوب."],
+["ما نوع لو في لو اجتهدت لنجحت؟",["شرط غير جازم","حرف جزم","حرف نصب","اسم موصول"],0,"لو حرف شرط غير جازم."],
+["ما إعراب تسعَ في لا تسعَ في الشر؟",["مرفوع بضمة مقدرة","منصوب","مجزوم بحذف حرف العلة","مجزوم بالسكون"],2,"لا الناهية تجزم بحذف حرف العلة."],
+["ما نوع إنْ في إن تدرس تنجح؟",["إن الناسخة","إن الشرطية الجازمة","إن النافية","إن المخففة"],1,"إن الشرطية تجزم فعل الشرط وجوابه."],
+["أي علامة تدل على جر الممنوع من الصرف؟",["الكسرة دائمًا","الفتحة إذا لم يضف ولم يعرف بأل","الضمة","السكون"],1,"الممنوع من الصرف يجر بالفتحة إذا لم يضف ولم يعرف بأل."]
+];
+
+let pos = 0;
+let score = 0;
+let answered = false;
+let results = [];
+
+const stages = ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"];
+const $ = id => document.getElementById(id);
+const hide = id => $(id).classList.add("hidden");
+const show = id => $(id).classList.remove("hidden");
+
+function startQuiz() {
+  pos = 0;
+  score = 0;
+  answered = false;
+  results = [];
+  hide("welcome");
+  hide("stageResult");
+  hide("result");
+  show("quiz");
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  answered = false;
+
+  const stage = Math.floor(pos / 20);
+  const local = pos % 20;
+  const q = Q[pos];
+
+  $("stageLabel").textContent = "المرحلة " + stages[stage];
+  $("counter").textContent = "السؤال " + (local + 1) + " من 20";
+  $("bar").style.width = (local / 20 * 100) + "%";
+
+  $("difficulty").textContent = [
+    "المستوى: مبتدئ",
+    "المستوى: أساسي",
+    "المستوى: متوسط",
+    "المستوى: متقدم",
+    "المستوى: متقدم جدًا"
+  ][stage];
+
+  $("question").textContent = q[0];
+  $("options").innerHTML = "";
+  $("feedback").className = "";
+  $("feedback").style.display = "none";
+  $("nextBtn").disabled = true;
+
+  $("nextBtn").textContent =
+    local === 19
+      ? (stage === 4 ? "عرض النتيجة النهائية" : "عرض نتيجة المرحلة")
+      : "السؤال التالي ←";
+
+  q[1].forEach((text, i) => {
+    const b = document.createElement("button");
+    b.className = "option";
+    b.textContent = ["أ", "ب", "ج", "د"][i] + ". " + text;
+    b.onclick = () => chooseAnswer(i);
+    $("options").appendChild(b);
+  });
+
+  const stageCorrect = results.filter(
+    r => Math.floor(r.pos / 20) === stage && r.correct
+  ).length;
+
+  $("scoreNow").textContent =
+    "صحيح في هذه المرحلة: " + stageCorrect + " من 20";
+}
+
+function chooseAnswer(choice) {
+  if (answered) return;
+
+  answered = true;
+
+  const q = Q[pos];
+  const correct = choice === q[2];
+
+  if (correct) score++;
+
+  results.push({pos, choice, correct});
+
+  document.querySelectorAll(".option").forEach((b, i) => {
+    b.disabled = true;
+
+    if (i === q[2]) b.classList.add("correct");
+    if (i === choice && !correct) b.classList.add("wrong");
+  });
+
+  const f = $("feedback");
+  f.className = correct ? "good" : "bad";
+  f.style.display = "block";
+
+  f.textContent = (
+    correct
+      ? "إجابة صحيحة! "
+      : "إجابة غير صحيحة. الإجابة الصحيحة: " + q[1][q[2]] + ". "
+  ) + q[3];
+
+  const stageCorrect = results.filter(
+    r => Math.floor(r.pos / 20) === Math.floor(pos / 20) && r.correct
+  ).length;
+
+  $("scoreNow").textContent =
+    "صحيح في هذه المرحلة: " + stageCorrect + " من 20";
+
+  $("nextBtn").disabled = false;
+  $("bar").style.width = ((pos % 20 + 1) / 20 * 100) + "%";
+}
+
+function nextQuestion() {
+  if (!answered) return;
+
+  if (pos % 20 === 19) {
+    if (pos === 99) {
+      finishQuiz(false);
+      return;
     }
 
-    function showRules() {
-      hideAll();
-      document.getElementById("rules").classList.remove("hidden");
-    }
+    showStageResult();
+    return;
+  }
 
-    function backToMenu() {
-      hideAll();
-      document.getElementById("mainMenu").classList.remove("hidden");
-    }
+  pos++;
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
 
-    function startQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      hideAll();
-      document.getElementById("quiz").classList.remove("hidden");
-      document.getElementById("totalQuestions").textContent =
-        questions.length;
-      showQuestion();
-    }
+function showStageResult() {
+  const stage = Math.floor(pos / 20);
+  const current = results.filter(
+    r => Math.floor(r.pos / 20) === stage
+  );
 
-    function showQuestion() {
-      answered = false;
+  const right = current.filter(r => r.correct).length;
+  const wrong = current.length - right;
 
-      const question = questions[currentQuestion];
+  $("stageTitle").textContent = "نتيجة المرحلة " + stages[stage];
+  $("stageDescription").textContent =
+    "أنهيت الأسئلة " + (stage * 20 + 1) +
+    " إلى " + ((stage + 1) * 20) + ".";
 
-      document.getElementById("questionNumber").textContent =
-        currentQuestion + 1;
-      document.getElementById("score").textContent = score;
-      document.getElementById("questionText").textContent = question.q;
-      document.getElementById("feedback").textContent = "";
-      document.getElementById("feedback").className = "";
-      document.getElementById("nextButton").classList.add("hidden");
+  $("stageScore").textContent = right + " / 20";
+  $("stageRight").textContent = right;
+  $("stageWrong").textContent = wrong;
+  $("stagePercent").textContent = Math.round(right / 20 * 100) + "%";
+  $("totalSoFar").textContent = score + " / " + results.length;
 
-      const answersDiv = document.getElementById("answers");
-      answersDiv.innerHTML = "";
+  $("stageMessage").textContent =
+    right >= 18
+      ? "ممتاز! أداء رائع."
+      : right >= 14
+        ? "أحسنت، واصل التقدم."
+        : "واصل التعلم، فالمرحلة التالية فرصة جديدة.";
 
-      question.a.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.className = "answer";
-        button.textContent = answer;
-        button.onclick = () => checkAnswer(index, button);
-        answersDiv.appendChild(button);
-      });
-    }
+  $("continueBtn").textContent =
+    "استمرار إلى المرحلة " + stages[stage + 1];
 
-    function checkAnswer(index, selectedButton) {
-      if (answered) return;
-      answered = true;
+  hide("quiz");
+  show("stageResult");
+  window.scrollTo(0, 0);
+}
 
-      const question = questions[currentQuestion];
-      const feedback = document.getElementById("feedback");
-      const buttons = document.querySelectorAll("#answers button");
+function continueStage() {
+  pos++;
+  hide("stageResult");
+  show("quiz");
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
 
-      buttons.forEach(button => {
-        button.disabled = true;
-        button.style.opacity = "0.85";
-      });
+function finishQuiz(early = false) {
+  hide("quiz");
+  hide("stageResult");
+  show("result");
 
-      if (index === question.correct) {
-        score++;
-        feedback.textContent = "أحسنت! إجابة صحيحة 🌟";
-        feedback.className = "correct";
-        selectedButton.style.background = "#d7f2df";
-        selectedButton.style.borderColor = "#16803d";
-      } else {
-        feedback.textContent =
-          "حاول مرة أخرى في السؤال القادم. الإجابة الصحيحة: " +
-          question.a[question.correct];
-        feedback.className = "wrong";
-        selectedButton.style.background = "#f8dddd";
-        selectedButton.style.borderColor = "#bd2525";
-      }
+  const attempted = results.length;
+  const wrong = attempted - score;
+  const pct = attempted ? Math.round(score / attempted * 100) : 0;
 
-      document.getElementById("score").textContent = score;
-      document.getElementById("nextButton").classList.remove("hidden");
+  $("finalTitle").textContent =
+    early ? "نتيجتك حتى الآن" : "النتيجة النهائية للمسابقة";
 
-      if (currentQuestion === questions.length - 1) {
-        document.getElementById("nextButton").textContent =
-          "عرض النتيجة النهائية";
-      } else {
-        document.getElementById("nextButton").textContent =
-          "السؤال التالي";
-      }
-    }
+  $("finalScore").textContent = score + " / " + attempted;
+  $("rightCount").textContent = score;
+  $("wrongCount").textContent = wrong;
+  $("percent").textContent = pct + "%";
 
-    function nextQuestion() {
-      if (!answered) return;
+  $("message").textContent = early
+    ? "أنهيت المسابقة بإرادتك بعد الإجابة عن " + attempted + " سؤالًا."
+    : "أكملت المراحل الخمس والمسابقـة كاملة!";
 
-      currentQuestion++;
+  $("advice").textContent =
+    pct >= 90
+      ? "ممتاز جدًا! لديك مستوى قوي في قواعد اللغة العربية."
+      : pct >= 75
+        ? "جيد جدًا! راجع الأخطاء لتحسين مستواك."
+        : pct >= 60
+          ? "جيد، وتحتاج إلى مراجعة بعض الأبواب النحوية."
+          : "راجع الأساسيات وتدرج في دراسة القواعد ثم أعد المسابقة.";
 
-      if (currentQuestion < questions.length) {
-        document.getElementById("nextButton").textContent =
-          "السؤال التالي";
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
+  $("review").innerHTML = "";
+  hide("review");
+  window.scrollTo(0, 0);
+}
 
-    function showResult() {
-      hideAll();
-      document.getElementById("result").classList.remove("hidden");
+function showReview() {
+  const box = $("review");
+  box.innerHTML = "<h3>مراجعة الإجابات</h3>";
 
-      const percentage = Math.round((score / questions.length) * 100);
+  results.forEach(r => {
+    const q = Q[r.pos];
+    const d = document.createElement("div");
+    d.className = "review-item";
 
-      document.getElementById("finalScore").textContent =
-        "نتيجتك: " + score + " من " + questions.length +
-        " (" + percentage + "%)";
+    const title = document.createElement("b");
+    title.textContent = (r.pos + 1) + ". " + q[0];
+    d.appendChild(title);
 
-      document.getElementById("finalMessage").textContent =
-        percentage >= 70
-          ? "أحسنت! بارك الله فيك، واصل التقدم."
-          : "لا تيأس، راجع القواعد وحاول مرة أخرى.";
-    }
+    const a = document.createElement("p");
+    a.textContent = "إجابتك: " + q[1][r.choice];
+    d.appendChild(a);
 
-    // عداد الزيارات عبر CounterAPI.
-    // استخدمنا اسم نطاق ثابت واسم مفتاح ثابت للعداد.
-    (function loadVisitorCounter() {
-      const countElement = document.getElementById("visitCount");
-      const messageElement = document.getElementById("counterMessage");
+    const c = document.createElement("p");
+    c.textContent = "الإجابة الصحيحة: " + q[1][q[2]];
+    d.appendChild(c);
 
-      const callbackName =
-        "visitorCounterCallback_" + Date.now();
+    const e = document.createElement("p");
+    e.className = "muted";
+    e.textContent = q[3];
+    d.appendChild(e);
 
-      const script = document.createElement("script");
+    box.appendChild(d);
+  });
 
-      window[callbackName] = function(data) {
-        if (data && data.value !== undefined) {
-          countElement.textContent =
-            Number(data.value).toLocaleString("ar");
-          messageElement.textContent = "عدد الزيارات المسجلة.";
-        } else {
-          countElement.textContent = "غير متاح";
-          messageElement.textContent =
-            "لم يصل رد صحيح من خدمة العداد.";
-        }
+  show("review");
+  box.scrollIntoView({behavior: "smooth"});
+}
 
-        delete window[callbackName];
-        script.remove();
-      };
+function restartQuiz() {
+  hide("result");
+  hide("stageResult");
+  hide("quiz");
+  show("welcome");
+  window.scrollTo(0, 0);
+}
+</script>
 
-      script.onerror = function() {
-        countElement.textContent = "غير متاح مؤقتًا";
-        messageElement.textContent =
-          "تعذّر الاتصال بالعداد. تأكد من اتصال الإنترنت.";
-        delete window[callbackName];
-        script.remove();
-      };
-
-      script.src =
-        "https://counterapi.com/api/dahshan65-arabic-grammar/view/arabic-grammar?callback=" +
-        callbackName;
-
-      script.async = true;
-      document.body.appendChild(script);
-    })();
-  </script>
 </body>
 </html>
